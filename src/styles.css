@@ -1,0 +1,321 @@
+/* Reset & base */
+* {
+    box-sizing: border-box;
+  }
+  
+  body,
+  html,
+  #root,
+  .app {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background: #f9f9f9;
+    color: #222;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .app.dark {
+    background: #121212;
+    color: #eee;
+  }
+  
+  /* Header */
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.5rem;
+    background: var(--primary-color, #1e90ff);
+    color: white;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  }
+  
+  header h1 {
+    margin: 0;
+    font-weight: 700;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+  }
+  
+  .dark-toggle {
+    background: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 1.25rem;
+    transition: transform 0.2s ease;
+  }
+  
+  .dark-toggle:hover {
+    transform: scale(1.2);
+  }
+  
+  /* Main container */
+  main {
+    padding: 1rem 1.5rem 3rem;
+    max-width: 1200px;
+    margin: auto;
+    flex-direction: column;
+    flex-grow: 1;
+    overflow: auto;
+  }
+  
+  /* Inputs section */
+  .inputs {
+    display: flex;
+    flex-wrap: wrap;
+    z-index: 1000;
+    gap: 12px;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    max-width: 100%;
+  }
+  
+  /* React Select container helper */
+  .react-select-container {
+    min-width: 200px;
+    flex: 1 1 250px;
+    max-width: 350px;
+    height: 30px;
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.25s ease, border-color 0.25s ease;
+    font-size: 1rem;
+    z-index: 1000;
+  }
+  
+  /* Override react-select control */
+  .react-select-container .css-yk16xz-control {
+    border: 1.8px solid #ddd;
+    box-shadow: none;
+    border-radius: 8px;
+    height: 44px;
+  }
+  
+  .react-select-container .css-yk16xz-control:hover,
+  .react-select-container .css-yk16xz-control:focus-within {
+    border-color: var(--primary-color, #1e90ff);
+    box-shadow: 0 0 8px rgba(30, 144, 255, 0.4);
+  }
+  
+  /* Button styles */
+  .inputs button.btn-primary {
+    background-color: var(--primary-color, #1e90ff);
+    color: white;
+    border: none;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.15s ease,
+      box-shadow 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+    padding: 0 1.2rem;
+    height: 30px;
+    border-radius: 8px;
+    min-width: 120px;
+    flex: 0 0 auto;
+    user-select: none;
+  }
+  
+  .inputs button.btn-primary:hover:not(:disabled) {
+    background-color: #0f75d8;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(15, 117, 216, 0.5);
+  }
+  
+  .inputs button.btn-primary:disabled {
+    background-color: #bbb;
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+  }
+  
+  /* Button icon spin animation */
+  .spin {
+    animation: spin 1s linear infinite;
+  }
+  
+  @keyframes spin {
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+  /* Map Wrapper */
+  .map-wrapper {
+    position: relative;
+    margin-bottom: 1.5rem;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Traffic Legend */
+  .legend {
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
+    color: #333;
+    user-select: none;
+    z-index: 1000;
+    max-width: 280px;
+  }
+  
+  .app.dark .legend {
+    background: rgba(30, 30, 30, 0.9);
+    color: #ddd;
+  }
+  
+  .legend .item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 6px;
+  }
+  
+  .legend .item:last-child {
+    margin-bottom: 0;
+  }
+  
+  .color-box {
+    width: 16px;
+    height: 16px;
+    border-radius: 4px;
+    margin-right: 8px;
+    border: 1px solid #ccc;
+  }
+  
+  .color-box.low {
+    background-color: #1e90ff; /* Dodger Blue */
+    border-color: #1e90ff;
+  }
+  
+  .color-box.low-medium {
+    background-color: orange;
+    border-color: orange;
+  }
+  
+  .color-box.medium {
+    background-color: #ff8c00; /* Dark orange */
+    border-color: #ff8c00;
+  }
+  
+  .color-box.high {
+    background-color: #ff3b3b; /* Red */
+    border-color: #ff3b3b;
+  }
+  
+  /* Results Card */
+  .results-card {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+    max-width: 450px;
+    margin: 1rem auto;
+    color: #222;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .app.dark .results-card {
+    background: #222;
+    color: #eee;
+  }
+  
+  .results-card h2 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-weight: 700;
+    font-size: 1.3rem;
+  }
+  
+  .results-card p {
+    margin: 0.3rem 0;
+    font-size: 1rem;
+  }
+  
+  .badge {
+    font-weight: 600;
+    padding: 0.15rem 0.6rem;
+    border-radius: 12px;
+    color: white;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    display: inline-block;
+    min-width: 70px;
+    text-align: center;
+  }
+  
+  /* Traffic level badges */
+  .badge.low {
+    background-color: #1e90ff;
+  }
+  
+  
+  .badge.low-medium {
+    background-color: orange;
+  }
+  
+  .badge.medium {
+    background-color: #ff8c00;
+  }
+  
+  .badge.high {
+    background-color: #ff3b3b;
+  }
+  
+  /* Footer */
+  footer {
+    padding: 1rem 1.5rem;
+    text-align: center;
+    font-size: 0.85rem;
+    color: #666;
+    border-top: 1px solid #eee;
+    user-select: none;
+  }
+  
+  .app.dark footer {
+    color: #999;
+    border-top-color: #333;
+  }
+  
+  /* Responsive - stack inputs on small screens */
+  @media (max-width: 600px) {
+    .inputs {
+      flex-direction: column;
+      align-items: stretch;
+    }
+  
+    .inputs .react-select-container,
+    .inputs > div,
+    .inputs button {
+      max-width: 100%;
+      flex: none;
+    }
+  }
+  
+  .btn-swap {
+    background: none;
+    border: none;
+    margin-top: 10px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    color: #555;
+    align-self: center;
+  }
+  
+  .btn-swap:hover {
+    color: #000;
+  }
+  
